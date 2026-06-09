@@ -20,7 +20,7 @@ SuperMarket POS là một ứng dụng Python chuyên dụng giúp quản lý qu
 
 ```
 SuperMarket/
-├── data/                    # Chứa hình ảnh của sản phẩm
+├── assets/img               # Chứa hình ảnh của sản phẩm
 ├── controllers/             # Chứa logic điều khiển (main_controller, sale_controller,...)
 ├── data/                    # Nơi lưu trữ database (supermarket.db)
 ├── models/                  # Chứa logic tương tác cơ sở dữ liệu (database.py)
