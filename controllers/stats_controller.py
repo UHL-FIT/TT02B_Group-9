@@ -126,11 +126,14 @@ class StatsController:
             print(f"Lỗi khi xử lý dữ liệu biểu đồ: {e}")
             traceback.print_exc()
 
+    # === Hàm xử lý sự kiện khi nhấn nút "Xem chi tiết" ===
     def show_order_details(self):
+        """Hàm xử lý khi nhấn nút 'Xem chi tiết' trên thẻ Số Đơn Hàng"""
         selected_time = self.view.time_filter.get()
-        # Lấy dữ liệu chi tiết từ database
+        # Gọi phương thức vừa thêm ở SupermarketDB để lấy dữ liệu
         detailed_sales_data = self.db.get_detailed_sales_data(selected_time)
         
-        # Hiển thị cửa sổ chi tiết đơn hàng
+        # Khởi tạo và hiển thị cửa sổ Dialog (đã định nghĩa trong stats_view.py)
         from views.stats_view import OrderDetailsDialog # Import ở đây để tránh lỗi vòng lặp
         OrderDetailsDialog(self.view.winfo_toplevel(), f"Chi tiết đơn hàng ({selected_time})", detailed_sales_data)
+    # =====================================================================

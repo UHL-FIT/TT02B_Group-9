@@ -4,9 +4,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.ticker as ticker
 
-# =====================================================================
-# CỬA SỔ HIỂN THỊ CHI TIẾT ĐƠN HÀNG
-# =====================================================================
+# === [PHẦN THÊM MỚI]: Class này tạo ra một cửa sổ popup mới để hiện danh sách hóa đơn ===
 class OrderDetailsDialog(ctk.CTkToplevel):
     def __init__(self, master, title, data):
         super().__init__(master)
@@ -116,7 +114,12 @@ class StatsView(ctk.CTkScrollableFrame):
         # Hàng KPI 1: Doanh thu - Lợi nhuận - Đơn hàng
         self.lbl_revenue = self.create_kpi_card(self.kpi_container, 0, 0, "💰 Tổng Doanh Thu", "0 đ", text_color="#2ecc71", padx=(0, 10))
         self.lbl_profit = self.create_kpi_card(self.kpi_container, 0, 1, "📈 Tổng Lợi Nhuận", "0 đ", text_color="#1abc9c", padx=10)
-        self.lbl_orders = self.create_kpi_card(self.kpi_container, 0, 2, "🧾 Số Đơn Hàng", "0 đơn", text_color="#3498db", padx=(10, 0), command=self.controller.show_order_details)
+        
+        # === [PHẦN THAY THẾ]: Thêm tham số command để kích hoạt nút bấm ===
+        # Code cũ: self.lbl_orders = self.create_kpi_card(self.kpi_container, 0, 2, "🧾 Số Đơn Hàng", "0 đơn", text_color="#3498db", padx=(10, 0))
+        # Code mới bổ sung command=self.controller.show_order_details
+        self.lbl_orders = self.create_kpi_card(self.kpi_container, 0, 2, "🧾 Số Đơn Hàng", "0 đơn", text_color="#3498db", padx=(10, 0),
+                                               command=self.controller.show_order_details)
         
         # Hàng KPI 2: Tiền mặt - Chuyển khoản - Tồn kho
         self.lbl_cash = self.create_kpi_card(self.kpi_container, 1, 0, "💵 Doanh Thu Tiền Mặt", "0 đ", text_color="#f1c40f", padx=(0, 10))

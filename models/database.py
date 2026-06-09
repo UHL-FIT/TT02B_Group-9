@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 import numpy as np
 from utils.logger import setup_logger 
-from datetime import datetime # Đã sửa lại import datetime cho chuẩn
+from datetime import datetime
 
 logger = setup_logger()
 
@@ -270,6 +270,30 @@ class SupermarketDB:
         self.cursor.execute(query, (f'{date_str}%',))
         result = self.cursor.fetchone()[0]
         return result if result else 0
+
+    # === lấy dữ liệu chi tiết cho cửa sổ xem đơn hàng ===
+    def get_detailed_sales_data(self, selected_time):
+        """Lấy dữ liệu chi tiết tất cả đơn hàng theo bộ lọc thời gian"""
+        date_condition = ""
+        if selected_time == "Hôm nay":
+            date_condition = "AND DATE(s.timestamp) = DATE('now', 'localtime')"
+        elif selected_time == "7 ngày qua":
+            date_condition = "AND DATE(s.timestamp) >= DATE('now', '-7 days', 'localtime')"
+        elif selected_time == "Tháng này":
+            date_condition = "AND strftime('%Y-%m', s.timestamp) = strftime('%Y-%m', 'now', 'localtime')"
+
+        # Truy vấn kết hợp (JOIN) 3 bảng: Sale_Details, Sales và Products để lấy đầy đủ thông tin
+        query = f"""
+            SELECT s.timestamp, sd.product_barcode, p.name, p.category, sd.unit_price, sd.quantity, (sd.quantity * sd.unit_price) as total_item, s.sale_id
+            FROM Sale_Details sd
+            JOIN Sales s ON sd.sale_id = s.sale_id
+            JOIN Products p ON sd.product_barcode = p.barcode
+            WHERE 1=1 {date_condition}
+            ORDER BY s.sale_id DESC
+        """
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+    # =====================================================================================================
 
     def __del__(self):
         try:

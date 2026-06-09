@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from views.main_view import MainView  # Gọi file View chuẩn MVC vào
+from views.main_view import MainView
 from models.database import SupermarketDB
 from controllers.inventory_controller import InventoryController
 from views.sale_view import SalesView
