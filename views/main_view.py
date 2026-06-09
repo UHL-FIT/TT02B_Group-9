@@ -19,7 +19,11 @@ class MainView:
                                        fg_color="transparent", hover_color="#00509e", 
                                        command=self.show_about_dialog)
         self.btn_about.pack(side="right", padx=5, pady=5)
-
+        # Hướng dẫn
+        self.btn_help = ctk.CTkButton(self.topbar, text="📖 Hướng dẫn", font=("Arial", 14, "bold"), 
+                                      fg_color="transparent", hover_color="#00509e")
+        self.btn_help.pack(side="right", padx=5, pady=5)
+        
         # Tiêu đề hệ thống bên trái
         ctk.CTkLabel(self.topbar, text="HỆ THỐNG SIÊU THỊ", font=("Arial", 18, "bold"), text_color="white").pack(side="left", padx=10)
 
