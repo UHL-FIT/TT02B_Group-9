@@ -13,7 +13,7 @@ Phần mềm áp dụng chặt chẽ mô hình **MVC**:
 ```text
 Supermarket/
 ├── assets/
-    ├── data_preset/data_preset.csv  # File mẫu để người dùng import vào kho.
+    ├── data_preset/data_preset.csv
     ├── img                  # Chứa hình ảnh của sản phẩm
 ├── data/                    # Nơi chứa file database SQLite (supermarket.db) và log.
 ├── models/
