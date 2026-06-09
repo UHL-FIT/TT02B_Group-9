@@ -10,7 +10,7 @@ Phần mềm áp dụng chặt chẽ mô hình **MVC**:
 * **Controller**: Viết bằng Python, làm nhiệm vụ nhận tương tác từ View, gọi Model để truy vấn SQLite, và render kết quả lên lại View.
 
 ## 3. Cấu trúc Source Code
-\`\`\`text
+```text
 Supermarket/
 ├── assets/
     ├── data_preset/data_preset.csv  # File mẫu để người dùng import vào kho.
@@ -31,7 +31,7 @@ Supermarket/
 ├── utils/
 │   └── logger.py            # Hỗ trợ ghi lại lịch sử lỗi hệ thống ra file log.
 ├── main.py                  # File khởi chạy duy nhất.
-\`\`\`
+```
 
 ## 4. Công nghệ sử dụng
 * **Ngôn ngữ**: Python 3.9+
